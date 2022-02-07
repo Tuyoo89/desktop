@@ -19,7 +19,6 @@ public class User extends BaseModel {
     String username;
     String phone_number;
     String about;
-    Document attachment;
     String created_date;
 
     public User(String username, String phone_number, String about) {

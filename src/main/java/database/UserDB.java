@@ -37,12 +37,11 @@ public class UserDB extends BaseDB<User> {
             return false;
 
         Document doc = new Document();
-        Document attachment = user.getAttachment();
 
         doc.append("username", user.getUsername());
         doc.append("phone_number", user.getPhone_number());
-        doc.append("username", user.getAttachment());
-        doc.append("created_date", attachment);
+        doc.append("about", user.getAbout());
+        doc.append("created_date", user.getCreated_date());
 
         users.insertOne(doc);
 
@@ -66,7 +65,9 @@ public class UserDB extends BaseDB<User> {
 
         Document user = users.find(Filters.eq("phone_number", phone_number)).first();
 
-        assert user != null;
+        if(user == null){
+            return "";
+        }
         return user.toJson();
     }
 
